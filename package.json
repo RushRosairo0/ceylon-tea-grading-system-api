@@ -1,0 +1,27 @@
+{
+  "name": "ceylon-tea-grading-system",
+  "version": "1.0.0",
+  "description": "An AI-powered tea grading application that classifies processed Ceylon tea using image analysis and expert sensory inputs through a mobile interface.",
+  "homepage": "https://github.com/RushRosairo0/ceylon-tea-grading-system#readme",
+  "bugs": {
+    "url": "https://github.com/RushRosairo0/ceylon-tea-grading-system/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RushRosairo0/ceylon-tea-grading-system.git"
+  },
+  "license": "ISC",
+  "author": "Rushmi Rosairo",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.11"
+  }
+}
