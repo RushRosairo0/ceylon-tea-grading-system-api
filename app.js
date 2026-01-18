@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { CORS } = require('./common/messages');
+const connection = require('./database/connection');
 require('dotenv').config({
   path: process.env.ENV_PATH || '.env',
 });
@@ -20,7 +20,7 @@ app.use(
       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
         callback(null, true);
       } else {
-        callback(new Error(CORS.INVALID));
+        callback(new Error('Not allowed by CORS!'));
       }
     },
     credentials: true,
