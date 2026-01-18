@@ -1,4 +1,5 @@
 const express = require('express');
+const authenticate = require('../middleware/auth/authenticate');
 const userController = require('../controllers/user.controller');
 
 const validator = require('../middleware/requestValidator');
@@ -10,5 +11,8 @@ const userRouter = express.Router();
 
 userRouter.post('/', validator(userRegisterSchema), userController.register);
 userRouter.post('/login', validator(userLoginSchema), userController.login);
+
+// secure below endpoints
+userRouter.use(authenticate);
 
 module.exports = userRouter;

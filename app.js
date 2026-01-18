@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const connection = require('./database/connection');
@@ -31,6 +32,9 @@ app.use(
     exposedHeaders: ['Access-Token'],
   }),
 );
+
+// serve uploads folder
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // setup routing paths
 app.use('/api', routes);
