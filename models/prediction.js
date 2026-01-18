@@ -12,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'imageId',
         as: 'image',
       });
+
+      // single prediction can have no or exactly one feedback
+      Prediction.hasOne(models.UserFeedback, {
+        foreignKey: 'predictionId',
+        as: 'feedback',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      });
     }
   }
 

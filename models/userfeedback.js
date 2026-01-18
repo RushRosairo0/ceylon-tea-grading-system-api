@@ -1,0 +1,61 @@
+'use strict';
+
+const { Model } = require('sequelize');
+
+module.exports = (sequelize, DataTypes) => {
+  class UserFeedback extends Model {
+    static associate(models) {
+      // single feedback belongs to a single user
+      UserFeedback.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'user',
+      });
+
+      // single feedback is based on a single prediction
+      UserFeedback.belongsTo(models.Prediction, {
+        foreignKey: 'predictionId',
+        as: 'prediction',
+      });
+    }
+  }
+
+  UserFeedback.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+      },
+      predictionId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'prediction_id',
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'user_id',
+      },
+      isAgreed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        field: 'is_agreed',
+      },
+      comment: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+        field: 'comment',
+      },
+    },
+    {
+      sequelize,
+      modelName: 'UserFeedback',
+      tableName: 'user_feedbacks',
+      underscored: true,
+      timestamps: true,
+    },
+  );
+
+  return UserFeedback;
+};
