@@ -1,12 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const connection = require('./database/connection');
+const errorHandler = require('./middleware/errorHandler');
 require('dotenv').config({
   path: process.env.ENV_PATH || '.env',
 });
 
 const ENV = process.env.NODE_ENV || 'development';
 const PORT = process.env.PORT || 3000;
+
+const routes = require('./routes/index');
 
 // initialize the express app
 const app = express();
@@ -28,6 +31,12 @@ app.use(
     exposedHeaders: ['Access-Token'],
   }),
 );
+
+// setup routing paths
+app.use('/api', routes);
+
+// global custom error handler
+app.use(errorHandler);
 
 // start the server
 app.listen(PORT, () => {
