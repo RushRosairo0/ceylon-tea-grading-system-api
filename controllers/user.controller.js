@@ -25,7 +25,12 @@ const userController = {
       const requestData = req.body;
 
       const response = await userService.userLogin(requestData);
-      const { success, status, data } = response;
+      const { success, status, data, accessToken } = response;
+
+      // set access token
+      res.set({
+        'Access-Token': accessToken,
+      });
 
       res.status(status).json({
         success: success,

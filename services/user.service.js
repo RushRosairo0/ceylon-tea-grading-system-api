@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 
-const userRepo = require('../repos/user.repo');
 const CustomError = require('../util/customeError');
+const jwtService = require('./jwt.service');
+const userRepo = require('../repos/user.repo');
 
 const userService = {
   userRegistration: async (data) => {
@@ -57,6 +58,14 @@ const userService = {
       throw new CustomError('Invalid login credentials!', 401);
     }
 
+    // generate access token
+    const tokenUser = {
+      id: user.id,
+      name: user.fullName,
+      email: user.email,
+    };
+    const accessToken = await jwtService.generateAccessToken(tokenUser);
+
     // user response
     const userRes = {
       id: user.id,
@@ -71,6 +80,7 @@ const userService = {
       data: {
         user: userRes,
       },
+      accessToken: accessToken,
     };
   },
 };
