@@ -1,7 +1,7 @@
 {
-  "name": "ceylon-tea-grading-system",
+  "name": "ceylon-tea-grading-system-api",
   "version": "1.0.0",
-  "description": "An AI-powered tea grading application that classifies processed Ceylon tea using image analysis and expert sensory inputs through a mobile interface.",
+  "description": "A RESTful backend API for the Ceylon Tea Grading System that manages user authentication, image uploads, prediction orchestration, and expert sensory evaluations, serving AI-driven tea grade classification results.",
   "homepage": "https://github.com/RushRosairo0/ceylon-tea-grading-system#readme",
   "bugs": {
     "url": "https://github.com/RushRosairo0/ceylon-tea-grading-system/issues"
