@@ -13,13 +13,13 @@ const requestValidator = (schema) => (req, res, next) => {
     // check for zod errors
     if (error instanceof ZodError) {
       const errors = error.issues || [];
-      const errorMessages = errors.map((err) => {
+      const errorMessages = errors.map((error) => {
         // remove error prefix
-        const path = err.path?.filter((part) => part !== 'body' && part !== 'query' && part !== 'params') || [];
+        const path = error.path?.filter((part) => part !== 'body' && part !== 'query' && part !== 'params') || [];
 
         return {
           field: path.join('.') || 'unknown',
-          message: err.message || 'Validation failed!',
+          message: error.message || 'Validation failed!',
         };
       });
 

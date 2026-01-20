@@ -9,13 +9,20 @@ const imageService = {
       url: `${destination}${filename}`,
       userId: reqUser.id,
     };
-    await teaImageRepo.create(imageDetails);
+    const image = await teaImageRepo.create(imageDetails);
+
+    // image response
+    const imageRes = {
+      id: image.id,
+      url: image.url,
+      userId: image.userId,
+    };
 
     return {
       success: true,
       status: 201,
       data: {
-        message: 'Image uploaded successfully!',
+        image: imageRes,
       },
     };
   },

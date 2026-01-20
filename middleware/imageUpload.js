@@ -30,8 +30,8 @@ const imageUpload = {
     const uploadSingle = uploadMiddleware.single('image');
 
     await new Promise((resolve, reject) => {
-      uploadSingle(req, res, (err) => {
-        if (err) return reject(err);
+      uploadSingle(req, res, (error) => {
+        if (error) return reject(error);
         resolve();
       });
     });

@@ -6,8 +6,6 @@ const imageController = {
       const requestData = req.file;
       requestData.reqUser = req.user;
 
-      console.log(requestData);
-
       const response = await imageService.uploadImage(requestData);
       const { success, status, data } = response;
 
